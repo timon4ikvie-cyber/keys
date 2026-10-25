@@ -1,6 +1,7 @@
 import { redis } from '../lib/keys.js';
 
 export default async function handler(req, res) {
+  res.setHeader('Access-Control-Allow-Origin', 'https://keyvault.vercel.app');
   const { key, device = 'x' } = req.query;
   const d = await redis.get('key:' + key);
   if (!d) return res.json({ valid: false, reason: 'not_found' });
