@@ -8,6 +8,5 @@ export default async function handler(req, res) {
   if (Date.now() - Number(start) < 20000)
     return res.status(403).send('Слишком быстро. Пройдите Linkvertise.');
   const key = await createKey(1, 1);
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.send(`<h2>Ваш ключ</h2><code style="font-size:20px">${key}</code>`);
+  res.redirect(302, `https://keyvault.vercel.app/#key=${key}`);
 }
